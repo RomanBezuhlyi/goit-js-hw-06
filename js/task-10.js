@@ -9,20 +9,21 @@ const inputEl = document.querySelector('input');
 const createBtn = document.querySelector('button[data-create]');
 const destroyBtn = document.querySelector('button[data-destroy]');
 
-const boxesEl = document.querySelector('.boxes'); 
+const boxesEl = document.querySelector('#boxes'); 
 
-let array = [];
 
-createBtn.addEventListener("click", () =>  createBoxes(inputEl.amount));
+createBtn.addEventListener("click", () => createBoxes(inputEl.value));
+
+let boxsize = 30;
 
 function createBoxes(amount) {
-  let boxsize = 30;
-for (let i = 0; i <= amount; i++){
+  for (let i = 0; i < amount; i++) {
+     const randomColor = getRandomHexColor();
     const createDiv = document.createElement('div');
-        createDiv.style.width =`${boxsize}px`;
-        createDiv.style.height =`${boxsize}px`;
-        createDiv.style.backgroundColor = getRandomHexColor();
-    array.push(createDiv);
-    boxsize += 10;
+    createDiv.style.width = `${boxsize}px`;
+    createDiv.style.height = `${boxsize}px`;
+    createDiv.style.backgroundColor = randomColor;
+      boxesEl.append(createDiv);  
   };
+      boxsize += 10;
 }
